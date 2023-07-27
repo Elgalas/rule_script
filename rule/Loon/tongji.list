@@ -1,0 +1,23 @@
+# NAME: tongji
+# AUTHOR: Egolas
+# REPO: https://github.com/Egolas/rule_script
+# UPDATED: 2023-07-05 14:03
+# DOMAIN-SUFFIX: 17
+# TOTAL: 17
+DOMAIN-SUFFIX,tongji.edu.cn
+DOMAIN-SUFFIX,software.tongji.edu.cn
+DOMAIN-SUFFIX,ids.tongji.edu.cn
+DOMAIN-SUFFIX,idp2.tongji.edu.cn
+DOMAIN-SUFFIX,1.tongji.edu.cn
+DOMAIN-SUFFIX,kgb.tongji.edu.cn
+DOMAIN-SUFFIX,yikatong.tongji.edu.cn
+DOMAIN-SUFFIX,help.tongji.edu.cn
+DOMAIN-SUFFIX,gym.tongji.edu.cn
+DOMAIN-SUFFIX,mail.tongji.edu.cn
+DOMAIN-SUFFIX,sbgl.tongji.edu.cn
+DOMAIN-SUFFIX,oldyqgx.tongji.edu.cn
+DOMAIN-SUFFIX,yqgx.tongji.edu.cn
+DOMAIN-SUFFIX,all.tongji.edu.cn
+DOMAIN-SUFFIX,myportal.tongji.edu.cn
+DOMAIN-SUFFIX,see.tongji.edu.cn
+DOMAIN-SUFFIX,sse.tongji.edu.cn
