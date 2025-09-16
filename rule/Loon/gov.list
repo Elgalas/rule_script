@@ -5,6 +5,7 @@
 # DOMAIN-SUFFIX: 3
 # TOTAL: 3
 DOMAIN-SUFFIX,gov.cn
+DOMAIN-SUFFIX,cctv.com
 DOMAIN-SUFFIX,nsfc.gov.cn
 DOMAIN-SUFFIX,grants.nsfc.gov.cn
 DOMAIN-SUFFIX,most.gov.cn
