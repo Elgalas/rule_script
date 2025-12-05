@@ -1,13 +1,28 @@
+port: 1081
+socks-port: 1082
+allow-lan: true
+mode: 'rule'
+ipv6: true
+log-level: 'info'
+bind-address: "*"
+external-controller: '0.0.0.0:9090'
+geodata-mode: true
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb"
+geo-auto-update: true
+geo-update-interval: 24
 tun:
   enable: true
   stack: mixed
   dns-hijack:   
-    - 198.18.0.2:5335  # 本地劫持 DNS 地址，无需修改
+    - 'tcp://any:53'
   auto-route: true
   auto-detect-interface: true
 dns:
   enable: true
-  listen: '127.0.0.1:5335'
+  listen: '0.0.0.0:5335'
   enhanced-mode: 'fake-ip'
   fake-ip-range: '198.18.0.1/16'
   fake-ip-filter-mode: 'blacklist'
