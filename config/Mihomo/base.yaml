@@ -1,11 +1,6 @@
-port: 1081
-socks-port: 1082
-allow-lan: true
 mode: 'rule'
 ipv6: true
-log-level: 'info'
 bind-address: "*"
-external-controller: '0.0.0.0:9090'
 geodata-mode: true
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
