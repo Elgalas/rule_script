@@ -3,9 +3,10 @@ ipv6: true
 bind-address: "*"
 geodata-mode: true
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb"
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-without-asn.mmdb"
+  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-asn.mmdb"
 geo-auto-update: true
 geo-update-interval: 24
 tun:
@@ -19,15 +20,15 @@ tun:
   auto-detect-interface: true
 dns:
   enable: true
-  listen: '0.0.0.0:5335'
-  enhanced-mode: 'fake-ip'
-  fake-ip-range: '198.18.0.1/16'
-  fake-ip-filter-mode: 'blacklist'
+  ipv6: true
   prefer-h3: false
   respect-rules: true
   use-hosts: true
   use-system-hosts: true
-  ipv6: true
+  listen: '0.0.0.0:5335'
+  enhanced-mode: 'fake-ip'
+  fake-ip-range: '198.18.0.1/16'
+  fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
     - '*.n.n.srv.nintendo.net'
     - '+.stun.playstation.net'
@@ -112,7 +113,16 @@ dns:
   nameserver:
     - 'https://doh.pub/dns-query'
     - 'https://dns.alidns.com/dns-query'
+  proxy-server-nameserver:
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+  direct-nameserver:
+    - '223.6.6.6'
+    - '119.28.28.28'
   direct-nameserver-follow-policy: true
+  fallback:
+    - 'https://cloudflare-dns.com/dns-query'
+    - 'https://dns.google/dns-query'
   fallback-filter:
     geoip: true
     geoip-code: 'CN'
@@ -126,15 +136,6 @@ dns:
       - '+.google.com'
       - '+.youtube.com'
       - '+.github.com'
-  fallback:
-    - 'https://cloudflare-dns.com/dns-query'
-    - 'https://dns.google/dns-query'
-  proxy-server-nameserver:
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
-  direct-nameserver:
-    - '223.6.6.6'
-    - '119.28.28.28'
   nameserver-policy:
     'software.tongji.edu.cn':
       - '202.120.190.208'
@@ -205,6 +206,9 @@ dns:
       - 'https://cloudflare-dns.com/dns-query'
       - 'https://dns.google/dns-query'
     "geosite:google":
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
+    "geosite:gfw":
       - 'https://cloudflare-dns.com/dns-query'
       - 'https://dns.google/dns-query'
     # 自定义直连域名使用国内 dns
