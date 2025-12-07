@@ -18,6 +18,36 @@ tun:
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
+sniffer:
+  enable: true
+  override-destination: true
+  sniff:
+    QUIC:
+      ports:
+      - 443
+    TLS:
+      ports:
+      - 443
+      - 8443
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+  force-domain:
+    - "+.netflix.com"
+    - "+.nflxvideo.net"
+    - "+.amazonaws.com"
+    - "+.media.dssott.com"
+  skip-domain:
+    - "+.apple.com"
+    - Mijia Cloud
+    - dlg.io.mi.com
+    - "+.oray.com"
+    - "+.sunlogin.net"
+    - "+.push.apple.com"
+  parse-pure-ip: true
+  force-dns-mapping: true
 dns:
   enable: true
   ipv6: true
@@ -30,7 +60,8 @@ dns:
   fake-ip-range: '198.18.0.1/16'
   fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
-    - "geosite:connectivity-check"
+    - 'geosite:cn'
+    - 'geosite:connectivity-check'
     - '*.n.n.srv.nintendo.net'
     - '+.stun.playstation.net'
     - 'xbox.*.*.microsoft.com'
@@ -200,19 +231,9 @@ dns:
     "geosite:category-games@cn":
       - '119.29.29.29'
       - '223.5.5.5.5'
-    "+.githubusercontent.com":
-      - 'https://cloudflare-dns.com/dns-query'
-      - 'https://dns.google/dns-query'
-    "+.github.com":
-      - 'https://cloudflare-dns.com/dns-query'
-      - 'https://dns.google/dns-query'
-    "geosite:google":
-      - 'https://cloudflare-dns.com/dns-query'
-      - 'https://dns.google/dns-query'
     "geosite:gfw":
       - 'https://cloudflare-dns.com/dns-query'
       - 'https://dns.google/dns-query'
-    # 自定义直连域名使用国内 dns
     "geosite:cn":
       - '119.29.29.29'
       - '223.5.5.5.5'
