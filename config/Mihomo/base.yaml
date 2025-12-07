@@ -19,7 +19,7 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
 sniffer:
-  enable: true
+  enable: false
   override-destination: true
   sniff:
     QUIC:
