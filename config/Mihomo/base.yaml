@@ -10,10 +10,12 @@ geo-auto-update: true
 geo-update-interval: 24
 tun:
   enable: true
-  stack: mixed
+  stack: 'gvisor'
   dns-hijack:   
+    - 'any:53'
     - 'tcp://any:53'
   auto-route: true
+  auto-redirect: true
   auto-detect-interface: true
 dns:
   enable: true
@@ -49,6 +51,59 @@ dns:
     - 'ntp.ubuntu.com'
     - '*.*.xboxlive.com'
     - 'speedtest.cros.wr.pvp.net'
+    - 'ntp.aliyun.com'
+    - 'ntp1.aliyun.com'
+    - 'ntp2.aliyun.com'
+    - 'ntp3.aliyun.com'
+    - 'ntp4.aliyun.com'
+    - 'ntp5.aliyun.com'
+    - 'ntp6.aliyun.com'
+    - 'ntp7.aliyun.com'
+    - 'time1.aliyun.com'
+    - 'time2.aliyun.com'
+    - 'time3.aliyun.com'
+    - 'time4.aliyun.com'
+    - 'time5.aliyun.com'
+    - 'time6.aliyun.com'
+    - 'time7.aliyun.com'
+    - '*.time.edu.cn'
+    - 'time1.apple.com'
+    - 'time2.apple.com'
+    - 'time3.apple.com'
+    - 'time4.apple.com'
+    - 'time5.apple.com'
+    - 'time6.apple.com'
+    - 'time7.apple.com'
+    - 'time1.google.com'
+    - 'time2.google.com'
+    - 'time3.google.com'
+    - 'time4.google.com'
+    - 'music.163.com'
+    - '*.music.163.com'
+    - '*.126.net'
+    - 'musicapi.taihe.com'
+    - 'music.taihe.com'
+    - 'songsearch.kugou.com'
+    - 'trackercdn.kugou.com'
+    - '*.kuwo.cn'
+    - 'api-jooxtt.sanook.com'
+    - 'api.joox.com'
+    - 'joox.com'
+    - 'y.qq.com'
+    - '*.y.qq.com'
+    - 'streamoc.music.tc.qq.com'
+    - 'mobileoc.music.tc.qq.com'
+    - 'isure.stream.qqmusic.qq.com'
+    - 'dl.stream.qqmusic.qq.com'
+    - 'aqqmusic.tc.qq.com'
+    - 'amobile.music.tc.qq.com'
+    - '*.xiami.com'
+    - '*.music.migu.cn'
+    - 'music.migu.cn'
+    - 'localhost.ptlogin2.qq.com'
+    - '*.*.*.srv.nintendo.net'
+    - '*.*.stun.playstation.net'
+    - '*.ipv6.microsoft.com'
   default-nameserver:
     - '223.6.6.6'
     - '119.28.28.28'
@@ -137,6 +192,12 @@ dns:
       - '223.5.5.5'
     '+.weixin.com':
       - '119.29.29.29'
+    "geosite:steam@cn":
+      - '119.29.29.29'
+      - '223.5.5.5.5'
+    "geosite:category-games@cn":
+      - '119.29.29.29'
+      - '223.5.5.5.5'
     "+.githubusercontent.com":
       - 'https://cloudflare-dns.com/dns-query'
       - 'https://dns.google/dns-query'
