@@ -137,6 +137,12 @@ dns:
     - '*.*.*.srv.nintendo.net'
     - '*.*.stun.playstation.net'
     - '*.ipv6.microsoft.com'
+    - '+.claude.ai'
+    - '+.claude.com'
+    - '+.claudeusercontent.com'
+    - '+.claudemcpclient.com'
+    - '+.servd-anthropic-website.b-cdn.net'
+    - '+.anthropic.com'
   default-nameserver:
     - '223.6.6.6'
     - '119.28.28.28'
