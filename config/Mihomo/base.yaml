@@ -155,6 +155,24 @@ dns:
     - '119.29.29.29'
   direct-nameserver-follow-policy: true
   nameserver-policy:
+    '+.claude.ai':
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
+    '+.claude.com':
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
+    '+.claudeusercontent.com':
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
+    '+.claudemcpclient.com':
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
+    '+.servd-anthropic-website.b-cdn.net':
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
+    '+.anthropic.com':
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://dns.google/dns-query'
     'software.tongji.edu.cn':
       - '202.120.190.208'
     '+.126.com':
