@@ -20,34 +20,6 @@ tun:
   auto-detect-interface: true
 sniffer:
   enable: false
-  override-destination: true
-  sniff:
-    QUIC:
-      ports:
-      - 443
-    TLS:
-      ports:
-      - 443
-      - 8443
-    HTTP:
-      ports:
-      - 80
-      - 8080-8880
-      override-destination: true
-  force-domain:
-    - "+.netflix.com"
-    - "+.nflxvideo.net"
-    - "+.amazonaws.com"
-    - "+.media.dssott.com"
-  skip-domain:
-    - "+.apple.com"
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - "+.oray.com"
-    - "+.sunlogin.net"
-    - "+.push.apple.com"
-  parse-pure-ip: true
-  force-dns-mapping: true
 dns:
   enable: true
   ipv6: true
@@ -62,6 +34,9 @@ dns:
   fake-ip-filter:
     - 'geosite:cn'
     - 'geosite:connectivity-check'
+    - 'geosite:private'
+    - 'geosite:steam@cn'
+    - 'geosite:category-games@cn'
     - '*.n.n.srv.nintendo.net'
     - '+.stun.playstation.net'
     - 'xbox.*.*.microsoft.com'
@@ -181,72 +156,26 @@ dns:
       - 'https://dns.google/dns-query'
     'software.tongji.edu.cn':
       - '202.120.190.208'
-    '+.126.com':
-      - '119.29.29.29'
-    '+.126.net':
-      - '119.29.29.29'
-    '+.127.net':
-      - '119.29.29.29'
-    '+.163.com':
-      - '119.29.29.29'
-    '+.alibaba.com':
-      - '223.5.5.5'
-    '+.alicdn.com':
-      - '223.5.5.5'
-    '+.alipay.com':
-      - '223.5.5.5'
-    '+.aliyun.com':
-      - '223.5.5.5'
-    '+.baidu.com':
-      - '223.5.5.5'
-    '+.bdstatic.com':
-      - '223.5.5.5'
-    '+.bilibili.com':
-      - '119.29.29.29'
-    '+.bilivideo.+':
-      - '119.29.29.29'
-    '+.douyin.com':
-      - '180.184.1.1'
-    '+.douyincdn.com':
-      - '180.184.1.1'
-    '+.douyinpic.com':
-      - '180.184.1.1'
-    '+.douyinvod.com':
-      - '180.184.1.1'
-    '+.feishu.cn':
-      - '180.184.1.1'
-    '+.hdslb.com':
-      - '119.29.29.29'
-    '+.iqiyi.com':
-      - '119.29.29.29'
-    '+.jd.com':
-      - '119.29.29.29'
-    '+.netease.com':
-      - '119.29.29.29'
-    '+.qpic.cn':
-      - '119.29.29.29'
-    '+.qq.com':
-      - '119.29.29.29'
-    '+.taobao.com':
-      - '223.5.5.5'
-    '+.tencent.com':
-      - '119.29.29.29'
-    '+.tmall.com':
-      - '223.5.5.5'
-    '+.weixin.com':
-      - '119.29.29.29'
     "geosite:cn":
+      - '223.6.6.6'
+      - '119.28.28.28'
+      - '223.5.5.5'
       - '119.29.29.29'
-      - '223.5.5.5.5'
     "geosite:private":
+      - '223.6.6.6'
+      - '119.28.28.28'
+      - '223.5.5.5'
       - '119.29.29.29'
-      - '223.5.5.5.5'
     "geosite:steam@cn":
+      - '223.6.6.6'
+      - '119.28.28.28'
+      - '223.5.5.5'
       - '119.29.29.29'
-      - '223.5.5.5.5'
     "geosite:category-games@cn":
+      - '223.6.6.6'
+      - '119.28.28.28'
+      - '223.5.5.5'
       - '119.29.29.29'
-      - '223.5.5.5.5'
     "geosite:gfw":
       - 'https://cloudflare-dns.com/dns-query'
       - 'https://dns.google/dns-query'
