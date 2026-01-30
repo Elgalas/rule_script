@@ -9,6 +9,9 @@ geox-url:
   asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-asn.mmdb"
 geo-auto-update: true
 geo-update-interval: 24
+profile:
+  store-selected: true
+  store-fake-ip: true
 tun:
   enable: true
   stack: 'gvisor'
