@@ -26,7 +26,7 @@ sniffer:
 dns:
   enable: true
   ipv6: true
-  prefer-h3: true
+  prefer-h3: false
   respect-rules: true
   use-hosts: true
   use-system-hosts: true
