@@ -5,3 +5,5 @@ DOMAIN-SUFFIX,claudeusercontent.com
 DOMAIN-SUFFIX,claudemcpclient.com
 DOMAIN-SUFFIX,servd-anthropic-website.b-cdn.net
 DOMAIN-SUFFIX,anyrouter.top
+DOMAIN-KEYWORD,claude
+DOMAIN-KEYWORD,anthropic
