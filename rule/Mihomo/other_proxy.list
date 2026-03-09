@@ -1,4 +1,6 @@
 DOMAIN-SUFFIX,anyrouter.top
+DOMAIN-SUFFIX,fuc.elros.cn
+DOMAIN-SUFFIX,fuc-api.elros.cn
 DOMAIN-SUFFIX,duangks.com
 IP-CIDR,138.2.0.129/32,no-resolve
 IP-CIDR,168.138.212.131/32,no-resolve
