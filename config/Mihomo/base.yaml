@@ -38,9 +38,6 @@ dns:
   fake-ip-range: '198.18.0.1/16'
   fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
-    - 'geosite:cn'
-    - 'geosite:steam@cn'
-    - 'geosite:category-games@cn'
     - 'geosite:connectivity-check'
     - 'geosite:private'
     - '*.n.n.srv.nintendo.net'
