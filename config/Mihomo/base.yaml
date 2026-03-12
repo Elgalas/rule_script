@@ -145,10 +145,9 @@ dns:
     - 180.76.76.76
   direct-nameserver-follow-policy: true
   nameserver-policy:
-    "+.software.tongji.edu.cn":
-      - system
+    "software.tongji.edu.cn":
       - 202.120.190.208
-    "+.linux.do": 
+    "linux.do": 
       - 'https://hellowayel.ddd.oaifree.com/query-dns'
       - 'https://doh.pub/dns-query'
       - 'https://dns.alidns.com/dns-query'
