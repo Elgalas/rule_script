@@ -133,21 +133,44 @@ dns:
     - "tls://dot.pub"
     - "tls://dns.alidns.com"
   direct-nameserver:
-    - '223.6.6.6'
-    - '119.28.28.28'
+    - system
+    - 223.5.5.5
+    - 114.114.114.114
+    - 180.184.1.1
+    - 119.29.29.29
+    - 180.76.76.76
   direct-nameserver-follow-policy: true
   nameserver-policy:
-    'software.tongji.edu.cn':
+    '+.software.tongji.edu.cn':
+      - system
       - '202.120.190.208'
+    "+.linux.do": 
+      - https://hello.ddd.oaifree.com/query-dns
+     - 'https://doh.pub/dns-query'
+     - 'https://dns.alidns.com/dns-query'
+     - "tls://dot.pub"
+     - "tls://dns.alidns.com"
     "geosite:cn":
-      - '223.6.6.6'
-      - '119.28.28.28'
+      - system
+      - 223.5.5.5
+      - 114.114.114.114
+      - 180.184.1.1
+      - 119.29.29.29
+      - 180.76.76.76
     "geosite:steam@cn":
-      - '223.6.6.6'
-      - '119.28.28.28'
+      - system
+      - 223.5.5.5
+      - 114.114.114.114
+      - 180.184.1.1
+      - 119.29.29.29
+      - 180.76.76.76
     "geosite:category-games@cn":
-      - '223.6.6.6'
-      - '119.28.28.28'
+      - system
+      - 223.5.5.5
+      - 114.114.114.114
+      - 180.184.1.1
+      - 119.29.29.29
+      - 180.76.76.76
     "geosite:gfw":
       - 'https://1.1.1.1/dns-query'
       - 'https://8.8.8.8/dns-query'
