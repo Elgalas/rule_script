@@ -119,8 +119,12 @@ dns:
     - '*.*.stun.playstation.net'
     - '*.ipv6.microsoft.com'
   default-nameserver:
-    - '223.6.6.6'
-    - '119.28.28.28'
+    - system
+    - 223.5.5.5
+    - 114.114.114.114
+    - 180.184.1.1
+    - 119.29.29.29
+    - 180.76.76.76
   fallback: null
   nameserver:
     - 'https://doh.pub/dns-query'
@@ -141,15 +145,15 @@ dns:
     - 180.76.76.76
   direct-nameserver-follow-policy: true
   nameserver-policy:
-    '+.software.tongji.edu.cn':
+    "+.software.tongji.edu.cn":
       - system
-      - '202.120.190.208'
+      - 202.120.190.208
     "+.linux.do": 
-      - https://hello.ddd.oaifree.com/query-dns
-     - 'https://doh.pub/dns-query'
-     - 'https://dns.alidns.com/dns-query'
-     - "tls://dot.pub"
-     - "tls://dns.alidns.com"
+      - 'https://hellowayel.ddd.oaifree.com/query-dns'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
+      - "tls://dot.pub"
+      - "tls://dns.alidns.com"
     "geosite:cn":
       - system
       - 223.5.5.5
