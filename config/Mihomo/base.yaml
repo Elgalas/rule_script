@@ -3,10 +3,10 @@ ipv6: true
 bind-address: "*"
 geodata-mode: true
 geox-url:
-  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb"
-  asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-asn.mmdb"
+  geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
+  asn: "https://testingcf.jsdelivr.net/gh/xishang0128/geoip@release/GeoLite2-ASN.mmdb"
 geo-auto-update: true
 geo-update-interval: 24
 profile:
@@ -21,8 +21,49 @@ tun:
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
+
+# ==================== 流量嗅探器 Sniffer ====================
+# 嗅探器可以通过分析流量内容还原真实域名，提高分流准确性
 sniffer:
-  enable: false
+  # 启用嗅探功能
+  enable: true
+  # 使用嗅探结果覆盖连接目标（推荐开启）
+  override-destination: true
+  # 嗅探协议配置
+  sniff:
+    # QUIC 协议嗅探（HTTP/3）
+    QUIC:
+      ports:
+      - 443
+    # TLS 协议嗅探（HTTPS）
+    TLS:
+      ports:
+      - 443  # 标准 HTTPS 端口
+      - 8443  # 常用替代 HTTPS 端口
+    # HTTP 协议嗅探
+    HTTP:
+      ports:
+      - 80  # 标准 HTTP 端口
+      - 8080-8880  # HTTP 常用端口范围
+      override-destination: true
+  # 强制对这些域名进行嗅探（即使已经有目标地址）
+  force-domain:
+    - "+.netflix.com"  # Netflix 主域名
+    - "+.nflxvideo.net"  # Netflix CDN
+    - "+.amazonaws.com"  # AWS 云服务
+    - "+.media.dssott.com"  # Disney+ 流媒体
+  # 跳过对这些域名的嗅探（避免干扰）
+  skip-domain:
+    - "+.apple.com"  # 苹果服务
+    - Mijia Cloud  # 米家云服务
+    - dlg.io.mi.com  # 小米设备通信
+    - "+.oray.com"  # 花生壳服务
+    - "+.sunlogin.net"  # 向日葵远程控制
+    - "+.push.apple.com"  # 苹果推送服务
+  # 解析纯 IP 连接（尝试通过 rDNS 反向解析获得域名）
+  parse-pure-ip: true
+  # 强制 DNS 映射（对纯 IP 连接尝试 DNS 映射）
+  force-dns-mapping: true
 clash-for-android: 
   append-system-dns: true
   ui-subtitle-pattern: ""
@@ -71,7 +112,6 @@ dns:
       - 202.120.190.108
       - 202.96.209.5
     "domain-suffix:linux.do": 
-      - 'https://hellowayel.ddd.oaifree.com/query-dns'
       - 'https://doh.pub/dns-query'
       - 'https://dns.alidns.com/dns-query'
       - "tls://dot.pub"
