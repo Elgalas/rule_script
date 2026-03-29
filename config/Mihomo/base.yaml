@@ -1,14 +1,31 @@
 mode: 'rule'
-ipv6: true
 bind-address: "*"
-geodata-mode: true
+# ==================== 地理数据库配置 GeoData Configuration ====================
+# 用于 IP 和域名的地理位置及分类判断
 geox-url:
-  geoip: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/lite/Country.mmdb"
-  asn: "https://testingcf.jsdelivr.net/gh/xishang0128/geoip@release/GeoLite2-ASN.mmdb"
-geo-auto-update: true
-geo-update-interval: 24
+  # MaxMind 数据库（含中国 IP）
+  mmdb: https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/Country.mmdb
+  # GeoIP 数据库
+  geoip: https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
+  # GeoSite 数据库（域名分类）
+  geosite: https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
+  # ASN（自治系统号）数据库，用于更精确的 IP 归属判断
+  asn: https://testingcf.jsdelivr.net/gh/xishang0128/geoip@release/GeoLite2-ASN.mmdb
+# 是否自动更新 geodata 数据库
+geo-auto-update: true # 是否自动更新 geodata
+# 更新间隔（小时），24 = 每天更新一次
+geo-update-interval: 24 # 更新间隔，单位：小时
+# 使用 geodata 模式（而非传统的 IP-CIDR 文件）
+geodata-mode: true
+
+# ==================== 日志与控制 ====================
+# 日志级别：silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
+log-level: info
+# 是否启用 IPv6，true 表示支持 IPv6 流量
+ipv6: true
+# 外部控制器地址，用于 Web UI 和 API 访问，0.0.0.0:9090 表示监听所有网卡的 9090 端口
+external-controller: 0.0.0.0:9090
+
 profile:
   store-selected: true
   store-fake-ip: true
@@ -64,9 +81,7 @@ sniffer:
   parse-pure-ip: true
   # 强制 DNS 映射（对纯 IP 连接尝试 DNS 映射）
   force-dns-mapping: true
-clash-for-android: 
-  append-system-dns: true
-  ui-subtitle-pattern: ""
+  
 dns:
   enable: true
   ipv6: true
@@ -79,8 +94,11 @@ dns:
   fake-ip-range: '198.18.0.1/16'
   fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
-    - 'geosite:connectivity-check'
+    - '*.lan'
+    - 'localhost.ptlogin2.qq.com'
     - 'geosite:private'
+    - 'geosite:connectivity-check'
+    - 'geosite:cn'
   default-nameserver:
     - system
     - 223.5.5.5
