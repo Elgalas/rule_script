@@ -121,10 +121,16 @@ dns:
     - 180.76.76.76
   direct-nameserver-follow-policy: true
   nameserver-policy:
-    "domain-suffix:software.tongji.edu.cn":
+    "domain-suffix:tongji.edu.cn":
       - 202.120.190.208
       - 202.120.190.108
       - 202.96.209.5
+      - system
+      - 223.5.5.5
+      - 114.114.114.114
+      - 180.184.1.1
+      - 119.29.29.29
+      - 180.76.76.76
     "domain-suffix:linux.do": 
       - 'https://doh.pub/dns-query'
       - 'https://dns.alidns.com/dns-query'
