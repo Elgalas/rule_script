@@ -1,5 +1,25 @@
-mode: 'rule'
+# ==================== 端口配置 Port Configuration ====================
+# HTTP 代理端口，用于处理 HTTP 协议流量
+port: 7890
+# SOCKS5 代理端口，用于处理 SOCKS5 协议流量
+socks-port: 7891
+# 混合端口（HTTP + SOCKS5），同时支持 HTTP 和 SOCKS5 协议
+mixed-port: 7893
+# 透明代理重定向端口（Linux 环境）
+redir-port: 7892
+# TProxy 端口（Linux 环境的透明代理）
+tproxy-port: 7895
+# 是否允许局域网连接，true 表示允许其他设备通过本机代理上网
+allow-lan: true
+# 绑定地址，"*" 表示监听所有网卡，可指定具体 IP
 bind-address: "*"
+# 工作模式：rule（规则模式）/ global（全局模式）/ direct（直连模式）
+mode: rule
+# 是否启用 TCP 并发，可提高连接性能
+tcp-concurrent: true
+# 统一延迟计算，使延迟测试更准确
+unified-delay: true
+
 # ==================== 地理数据库配置 GeoData Configuration ====================
 # 用于 IP 和域名的地理位置及分类判断
 geox-url:
@@ -19,8 +39,6 @@ geodata-mode: true
 log-level: info
 # 是否启用 IPv6，true 表示支持 IPv6 流量
 ipv6: true
-# 外部控制器地址，用于 Web UI 和 API 访问，0.0.0.0:9090 表示监听所有网卡的 9090 端口
-external-controller: 0.0.0.0:9090
 
 profile:
   store-selected: true
@@ -29,11 +47,14 @@ tun:
   enable: true
   stack: 'gvisor'
   dns-hijack:   
-    - 'any:53'
-    - 'tcp://any:53'
+    - 0.0.0.0:53
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
+  strict-route: true
+  # 端点无关 NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
+  endpoint-independent-nat: true
+  device_name: MihomoT
 
 # ==================== 流量嗅探器 Sniffer ====================
 # 嗅探器可以通过分析流量内容还原真实域名，提高分流准确性
