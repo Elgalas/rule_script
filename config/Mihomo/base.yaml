@@ -54,7 +54,6 @@ tun:
   strict-route: true
   # 端点无关 NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
   endpoint-independent-nat: true
-  device_name: MihomoT
 
 # ==================== 流量嗅探器 Sniffer ====================
 # 嗅探器可以通过分析流量内容还原真实域名，提高分流准确性
