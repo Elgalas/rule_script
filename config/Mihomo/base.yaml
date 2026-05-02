@@ -47,7 +47,8 @@ tun:
   enable: true
   stack: 'gvisor'
   dns-hijack:   
-    - 0.0.0.0:53
+    - any:53
+    - tcp://any:53
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
@@ -62,12 +63,17 @@ sniffer:
   enable: true
   # 使用嗅探结果覆盖连接目标（推荐开启）
   override-destination: true
+  # 解析纯 IP 连接（尝试通过 rDNS 反向解析获得域名）
+  parse-pure-ip: true
+  # 强制 DNS 映射（对纯 IP 连接尝试 DNS 映射）
+  force-dns-mapping: true
   # 嗅探协议配置
   sniff:
     # QUIC 协议嗅探（HTTP/3）
     QUIC:
       ports:
-      - 443
+      - 443  # 标准 HTTPS 端口
+      - 8443  # 常用替代 HTTPS 端口
     # TLS 协议嗅探（HTTPS）
     TLS:
       ports:
@@ -78,7 +84,6 @@ sniffer:
       ports:
       - 80  # 标准 HTTP 端口
       - 8080-8880  # HTTP 常用端口范围
-      override-destination: true
   # 强制对这些域名进行嗅探（即使已经有目标地址）
   force-domain:
     - "+.netflix.com"  # Netflix 主域名
@@ -93,10 +98,6 @@ sniffer:
     - "+.oray.com"  # 花生壳服务
     - "+.sunlogin.net"  # 向日葵远程控制
     - "+.push.apple.com"  # 苹果推送服务
-  # 解析纯 IP 连接（尝试通过 rDNS 反向解析获得域名）
-  parse-pure-ip: true
-  # 强制 DNS 映射（对纯 IP 连接尝试 DNS 映射）
-  force-dns-mapping: true
   
 dns:
   enable: true
@@ -122,7 +123,9 @@ dns:
     - 180.184.1.1
     - 119.29.29.29
     - 180.76.76.76
-  fallback: null
+  fallback: []
+  fallback-filter:
+    geoip: false
   nameserver:
     - 'https://doh.pub/dns-query'
     - 'https://dns.alidns.com/dns-query'
