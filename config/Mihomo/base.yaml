@@ -117,7 +117,6 @@ dns:
     - 'geosite:connectivity-check'
     - 'geosite:cn'
   default-nameserver:
-    - system
     - 223.5.5.5
     - 114.114.114.114
     - 180.184.1.1
