@@ -139,10 +139,7 @@ dns:
     - "tls://dot.pub"
     - "tls://dns.alidns.com"
   proxy-server-nameserver:
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
-    - "tls://dot.pub"
-    - "tls://dns.alidns.com"
+    - udp://127.0.0.1:1053
   direct-nameserver:
     - 223.5.5.5
     - 114.114.114.114
