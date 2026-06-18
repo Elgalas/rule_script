@@ -108,6 +108,7 @@ sniffer:
   
 dns:
   enable: true
+  cache-algorithm: arc
   ipv6: true
   prefer-h3: false
   respect-rules: true
@@ -116,6 +117,7 @@ dns:
   listen: '0.0.0.0:1053'
   enhanced-mode: 'fake-ip'
   fake-ip-range: '198.18.0.1/16'
+  fake-ip-range-v6: 'fc00::/18'
   fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
     - '*.lan'
@@ -187,6 +189,19 @@ dns:
       - 'https://dns.google/dns-query'
       
 hosts:
+  'dns.alidns.com': ['223.5.5.5', '223.6.6.6']
+  'doh.pub': ['1.12.12.12', '120.53.53.53']
+  'dns.cloudflare.com': ['1.1.1.1', '1.0.0.1']
+  'dns.google': ['8.8.8.8', '8.8.4.4']
+
+  # 解决谷歌商店无法下载的问题
+  'services.googleapis.cn': ['services.googleapis.com']
+
+  # 屏蔽哔哩哔哩PCDN，解决访问视频卡顿问题
+  '+.mcdn.bilivideo.com': ['0.0.0.0']
+  '+.mcdn.bilivideo.cn': ['0.0.0.0']
+  
   aexbjbgp01.224837439.xyz: a6ac3560-59f7-11f1.224837439.xyz
   aexgzbgp01.224837439.xyz: a6ac3560-59f7-11f2.224837439.xyz
   aexshbgp01.224837439.xyz: a6ac3560-59f7-11f3.224837439.xyz
+  
