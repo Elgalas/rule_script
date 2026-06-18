@@ -33,17 +33,6 @@ profile:
 experimental:
   sniff-tls-sni: true
 
-tun:
-  enable: true
-  stack: 'gvisor'
-  dns-hijack:   
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  strict-route: true
-  endpoint-independent-nat: true
 
 # ==================== 流量嗅探器 Sniffer ====================
 # 嗅探器可以通过分析流量内容还原真实域名，提高分流准确性
