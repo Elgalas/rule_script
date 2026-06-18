@@ -1,48 +1,38 @@
-# ==================== 端口配置 Port Configuration ====================
-# HTTP 代理端口，用于处理 HTTP 协议流量
 port: 7890
-# SOCKS5 代理端口，用于处理 SOCKS5 协议流量
 socks-port: 7891
-# 混合端口（HTTP + SOCKS5），同时支持 HTTP 和 SOCKS5 协议
-mixed-port: 7893
-# 透明代理重定向端口（Linux 环境）
 redir-port: 7892
-# TProxy 端口（Linux 环境的透明代理）
-tproxy-port: 7895
-# 是否允许局域网连接，true 表示允许其他设备通过本机代理上网
-allow-lan: true
-# 绑定地址，"*" 表示监听所有网卡，可指定具体 IP
-bind-address: "*"
-# 工作模式：rule（规则模式）/ global（全局模式）/ direct（直连模式）
+mixed-port: 7893
+allow-lan: false
 mode: rule
-# 是否启用 TCP 并发，可提高连接性能
-tcp-concurrent: true
-# 统一延迟计算，使延迟测试更准确
+log-level: info
+external-controller: 127.0.0.1:9090
 unified-delay: true
 
-# ==================== 地理数据库配置 GeoData Configuration ====================
-# 用于 IP 和域名的地理位置及分类判断
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb"
   asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-asn.mmdb"
-# 是否自动更新 geodata 数据库
-geo-auto-update: true # 是否自动更新 geodata
-# 更新间隔（小时），24 = 每天更新一次
-geo-update-interval: 24 # 更新间隔，单位：小时
-# 使用 geodata 模式（而非传统的 IP-CIDR 文件）
+
+geo-auto-update: true
+geo-update-interval: 24
 geodata-mode: true
 
-# ==================== 日志与控制 ====================
-# 日志级别：silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
-log-level: info
 # 是否启用 IPv6，true 表示支持 IPv6 流量
 ipv6: true
+
+clash-for-android:
+  append-system-dns: false
 
 profile:
   store-selected: true
   store-fake-ip: true
+  tracing: true
+
+
+experimental:
+  sniff-tls-sni: true
+
 tun:
   enable: true
   stack: 'gvisor'
@@ -53,7 +43,6 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   strict-route: true
-  # 端点无关 NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
   endpoint-independent-nat: true
 
 # ==================== 流量嗅探器 Sniffer ====================
@@ -106,7 +95,7 @@ dns:
   respect-rules: true
   use-hosts: true
   use-system-hosts: true
-  listen: '0.0.0.0:5335'
+  listen: 127.0.0.1:1053
   enhanced-mode: 'fake-ip'
   fake-ip-range: '198.18.0.1/16'
   fake-ip-filter-mode: 'blacklist'
