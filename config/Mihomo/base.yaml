@@ -119,6 +119,7 @@ dns:
   fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
     - '*.lan'
+    - '+.224837439.xyz'
     - 'localhost.ptlogin2.qq.com'
     - 'geosite:private'
     - 'geosite:connectivity-check'
@@ -138,7 +139,10 @@ dns:
     - "tls://dot.pub"
     - "tls://dns.alidns.com"
   proxy-server-nameserver:
-    - udp://127.0.0.1:1053
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - "tls://dot.pub"
+    - "tls://dns.alidns.com"
   direct-nameserver:
     - 223.5.5.5
     - 114.114.114.114
@@ -184,3 +188,8 @@ dns:
       - 'https://8.8.8.8/dns-query'
       - 'https://one.one.one.one/dns-query'
       - 'https://dns.google/dns-query'
+      
+hosts:
+  aexbjbgp01.224837439.xyz: a6ac3560-59f7-11f1.224837439.xyz
+  aexgzbgp01.224837439.xyz: a6ac3560-59f7-11f2.224837439.xyz
+  aexshbgp01.224837439.xyz: a6ac3560-59f7-11f3.224837439.xyz
