@@ -1,135 +1,151 @@
+# ==================== 端口配置 Port Configuration ====================
+# HTTP 代理端口，用于处理 HTTP 协议流量
 port: 7890
+# SOCKS5 代理端口，用于处理 SOCKS5 协议流量
 socks-port: 7891
-redir-port: 7892
+# 混合端口（HTTP + SOCKS5），同时支持 HTTP 和 SOCKS5 协议
 mixed-port: 7893
-allow-lan: false
+# 透明代理重定向端口（Linux 环境）
+redir-port: 7892
+# TProxy 端口（Linux 环境的透明代理）
+tproxy-port: 7895
+# 是否允许局域网连接，true 表示允许其他设备通过本机代理上网
+allow-lan: true
+# 绑定地址，"*" 表示监听所有网卡，可指定具体 IP
+bind-address: "*"
+# 工作模式：rule（规则模式）/ global（全局模式）/ direct（直连模式）
 mode: rule
-log-level: info
-external-controller: 127.0.0.1:9090
+# 是否启用 TCP 并发，可提高连接性能
+tcp-concurrent: true
+# 统一延迟计算，使延迟测试更准确
 unified-delay: true
-sniffer:
-  sniff:
-    TLS: {ports: [443], override-destination: true}
-    HTTP: {ports: [443], override-destination: true}
-  enable: true
-  parse-pure-ip: false
-  force-dns-mapping: true
-  override-destination: true
-ipv6: true
+external-controller: 127.0.0.1:9090
+
 clash-for-android:
   append-system-dns: false
-profile:
-  tracing: true
+
 experimental:
   sniff-tls-sni: true
+  
+# ==================== 地理数据库配置 GeoData Configuration ====================
+# 用于 IP 和域名的地理位置及分类判断
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-without-asn.mmdb"
+  asn: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country-asn.mmdb"
+# 是否自动更新 geodata 数据库
+geo-auto-update: true # 是否自动更新 geodata
+# 更新间隔（小时），24 = 每天更新一次
+geo-update-interval: 24 # 更新间隔，单位：小时
+# 使用 geodata 模式（而非传统的 IP-CIDR 文件）
+geodata-mode: true
+
+# ==================== 日志与控制 ====================
+# 日志级别：silent（静默）/ error（错误）/ warning（警告）/ info（信息）/ debug（调试）
+log-level: info
+# 是否启用 IPv6，true 表示支持 IPv6 流量
+ipv6: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+tun:
+  enable: true
+  stack: 'gvisor'
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+  # 端点无关 NAT（提高 NAT 类型兼容性，适用于 P2P 和游戏）
+  endpoint-independent-nat: true
+
+# ==================== 流量嗅探器 Sniffer ====================
+# 嗅探器可以通过分析流量内容还原真实域名，提高分流准确性
+sniffer:
+  # 启用嗅探功能
+  enable: true
+  # 使用嗅探结果覆盖连接目标（推荐开启）
+  override-destination: true
+  # 解析纯 IP 连接（尝试通过 rDNS 反向解析获得域名）
+  parse-pure-ip: true
+  # 强制 DNS 映射（对纯 IP 连接尝试 DNS 映射）
+  force-dns-mapping: true
+  # 嗅探协议配置
+  sniff:
+    # QUIC 协议嗅探（HTTP/3）
+    QUIC:
+      ports:
+      - 443  # 标准 HTTPS 端口
+      - 8443  # 常用替代 HTTPS 端口
+    # TLS 协议嗅探（HTTPS）
+    TLS:
+      ports:
+      - 443  # 标准 HTTPS 端口
+      - 8443  # 常用替代 HTTPS 端口
+    # HTTP 协议嗅探
+    HTTP:
+      ports:
+      - 80  # 标准 HTTP 端口
+      - 8080-8880  # HTTP 常用端口范围
+  # 强制对这些域名进行嗅探（即使已经有目标地址）
+  force-domain:
+    - "+.netflix.com"  # Netflix 主域名
+    - "+.nflxvideo.net"  # Netflix CDN
+    - "+.amazonaws.com"  # AWS 云服务
+    - "+.media.dssott.com"  # Disney+ 流媒体
+  # 跳过对这些域名的嗅探（避免干扰）
+  skip-domain:
+    - "+.apple.com"  # 苹果服务
+    - Mijia Cloud  # 米家云服务
+    - dlg.io.mi.com  # 小米设备通信
+    - "+.oray.com"  # 花生壳服务
+    - "+.sunlogin.net"  # 向日葵远程控制
+    - "+.push.apple.com"  # 苹果推送服务
+  
 dns:
   enable: true
   ipv6: true
-  listen: 127.0.0.1:1053
+  prefer-h3: false
+  respect-rules: true
   use-hosts: true
-  nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - tls://120.53.53.53
-    - tls://1.12.12.12
-    - system
-  fake-ip-range: 198.18.0.1/15
+  use-system-hosts: true
+  listen: '0.0.0.0:1053'
+  enhanced-mode: 'fake-ip'
+  fake-ip-range: '198.18.0.1/16'
+  fake-ip-filter-mode: 'blacklist'
   fake-ip-filter:
-    - "*.lan"
-    - "*.localdomain"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time1.*.com
-    - time2.*.com
-    - time3.*.com
-    - time4.*.com
-    - time5.*.com
-    - time6.*.com
-    - time7.*.com
-    - ntp.*.com
-    - ntp1.*.com
-    - ntp2.*.com
-    - ntp3.*.com
-    - ntp4.*.com
-    - ntp5.*.com
-    - ntp6.*.com
-    - ntp7.*.com
-    - "*.time.edu.cn"
-    - "*.ntp.org.cn"
-    - +.pool.ntp.org
-    - time1.cloud.tencent.com
-    - stun.*.*
-    - stun.*.*.*
-    - swscan.apple.com
-    - mesu.apple.com
-    - music.163.com
-    - "*.music.163.com"
-    - "*.126.net"
-    - musicapi.taihe.com
-    - music.taihe.com
-    - songsearch.kugou.com
-    - trackercdn.kugou.com
-    - "*.kuwo.cn"
-    - api-jooxtt.sanook.com
-    - api.joox.com
-    - y.qq.com
-    - "*.y.qq.com"
-    - streamoc.music.tc.qq.com
-    - mobileoc.music.tc.qq.com
-    - isure.stream.qqmusic.qq.com
-    - dl.stream.qqmusic.qq.com
-    - aqqmusic.tc.qq.com
-    - amobile.music.tc.qq.com
-    - localhost.ptlogin2.qq.com
-    - "*.msftconnecttest.com"
-    - "*.msftncsi.com"
-    - "*.xiami.com"
-    - "*.music.migu.cn"
-    - music.migu.cn
-    - +.wotgame.cn
-    - +.wggames.cn
-    - +.wowsgame.cn
-    - +.wargaming.net
-    - "*.*.*.srv.nintendo.net"
-    - "*.*.stun.playstation.net"
-    - xbox.*.*.microsoft.com
-    - "*.*.xboxlive.com"
-    - "*.ipv6.microsoft.com"
-    - teredo.*.*.*
-    - teredo.*.*
-    - speedtest.cros.wr.pvp.net
-    - +.jjvip8.com
-    - www.douyu.com
-    - activityapi.huya.com
-    - activityapi.huya.com.w.cdngslb.com
-    - www.bilibili.com
-    - api.bilibili.com
-    - a.w.bilicdn1.com
-    - +.224837439.xyz
     - '*.lan'
     - 'localhost.ptlogin2.qq.com'
     - 'geosite:private'
     - 'geosite:connectivity-check'
     - 'geosite:cn'
-  enhanced-mode: fake-ip
-  use-system-hosts: false
-  proxy-server-nameserver:
-    - udp://127.0.0.1:1053
-
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 180.184.1.1
+    - 119.29.29.29
+    - 180.76.76.76
   fallback: []
   fallback-filter:
     geoip: false
-
+  nameserver:
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - "tls://dot.pub"
+    - "tls://dns.alidns.com"
+  proxy-server-nameserver:
+    - udp://127.0.0.1:1053
+  direct-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 180.184.1.1
+    - 119.29.29.29
+    - 180.76.76.76
+  direct-nameserver-follow-policy: true
   nameserver-policy:
     "domain-suffix:tongji.edu.cn":
       - 202.120.190.208
@@ -140,6 +156,11 @@ dns:
       - 180.184.1.1
       - 119.29.29.29
       - 180.76.76.76
+    "domain-suffix:linux.do": 
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
+      - "tls://dot.pub"
+      - "tls://dns.alidns.com"
     "geosite:cn":
       - 223.5.5.5
       - 114.114.114.114
@@ -161,5 +182,5 @@ dns:
     "geosite:gfw":
       - 'https://1.1.1.1/dns-query'
       - 'https://8.8.8.8/dns-query'
-      - 'tls://1.1.1.1:853'
-      - 'tls://8.8.8.8:853'
+      - 'https://one.one.one.one/dns-query'
+      - 'https://dns.google/dns-query'
