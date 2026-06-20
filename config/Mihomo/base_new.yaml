@@ -683,6 +683,8 @@ proxy-groups:
 
   - name: 'MyVPS'
     <<: *group_common_select
+    include-all-proxies: true
+    filter: 'MyVPS.+|.+MyVPS'
     proxies: ['REJECT']
 
   # - name: '自动选择'
