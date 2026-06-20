@@ -77,13 +77,14 @@ foreignDNS:
 dns:
   enable: true
   ipv6: true
-  listen: :1053
+  listen: '0.0.0.0:1053'
   cache-algorithm: arc
   use-hosts: true
   use-system-hosts: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range-v6: 'fc00::/18'
+  fake-ip-filter-mode: 'blacklist'
   fake-ip-filter: ['*.lan', '+.224837439.xyz', 'rule-set:private', 'rule-set:fakeip_filter']
   proxy-server-nameserver: 
     - udp://127.0.0.1:1053
@@ -91,6 +92,9 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  fallback: []
+  fallback-filter:
+    geoip: false
   nameserver-policy:
     'rule-set:cn':
       - '223.5.5.5'
