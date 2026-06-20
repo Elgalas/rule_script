@@ -541,7 +541,7 @@ group_common:
       url: 'https://g.cn/generate_204',
       lazy: true,
       tolerance: 100,
-      include-all: true,
+      include-all-providers: true,
       exclude-type: 'DIRECT',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png',
       hidden: true,
@@ -556,7 +556,7 @@ group_common:
       empty-fallback: REJECT,
       url: 'https://g.cn/generate_204',
       lazy: true,
-      include-all: true,
+      include-all-providers: true,
       exclude-type: 'DIRECT',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png',
       hidden: true,
@@ -572,7 +572,7 @@ group_common:
       url: 'https://g.cn/generate_204',
       lazy: true,
       strategy: 'sticky-sessions',
-      include-all: true,
+      include-all-providers: true,
       exclude-type: 'DIRECT',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Round_Robin.png',
       hidden: true,
@@ -683,7 +683,7 @@ proxy-groups:
 
   - name: 'MyVPS'
     <<: *group_common_select
-    include-all: true
+    include-all-providers: true
     filter: 'MyVPS.+|.+MyVPS'
     proxies: ['REJECT']
 
@@ -810,7 +810,7 @@ proxy-groups:
   # 定义地区策略组
   - name: '香港'
     <<: [*group_common_select, *HK_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['香港-自动选择', '香港-故障转移', '香港-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png'
   - name: '香港-自动选择'
@@ -822,7 +822,7 @@ proxy-groups:
 
   - name: '日本'
     <<: [*group_common_select, *JP_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['日本-自动选择', '日本-故障转移', '日本-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png'
   - name: '日本-自动选择'
@@ -834,7 +834,7 @@ proxy-groups:
 
   - name: '美国'
     <<: [*group_common_select, *US_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['美国-自动选择', '美国-故障转移', '美国-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png'
   - name: '美国-自动选择'
@@ -846,7 +846,7 @@ proxy-groups:
 
   - name: '新加坡'
     <<: [*group_common_select, *SG_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['新加坡-自动选择', '新加坡-故障转移', '新加坡-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png'
   - name: '新加坡-自动选择'
@@ -858,7 +858,7 @@ proxy-groups:
 
   - name: '台湾省'
     <<: [*group_common_select, *TW_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['台湾省-自动选择', '台湾省-故障转移', '台湾省-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png'
   - name: '台湾省-自动选择'
@@ -870,7 +870,7 @@ proxy-groups:
 
   - name: '低倍率'
     <<: [*group_common_select, *low_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['低倍率-自动选择', '低倍率-故障转移', '低倍率-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Available_1.png'
   - name: '低倍率-自动选择'
@@ -882,7 +882,7 @@ proxy-groups:
 
   - name: '高倍率节点'
     <<: [*group_common_select, *high_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['高倍率节点-自动选择', '高倍率节点-故障转移', '高倍率节点-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png'
   - name: '高倍率节点-自动选择'
@@ -894,7 +894,7 @@ proxy-groups:
 
   - name: '其他'
     <<: [*group_common_select, *exclude_filter]
-    include-all: true
+    include-all-providers: true
     proxies: ['其他-自动选择', '其他-故障转移', '其他-负载均衡']
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'
   - name: '其他-自动选择'
