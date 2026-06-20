@@ -105,7 +105,7 @@ dns:
       - 180.184.1.1
       - 119.29.29.29
       - 180.76.76.76
-    'rule-set:Linuxdo':
+    'rule-set:my_linuxdo':
       - 'https://dns.alidns.com/dns-query'
       - 'https://doh.pub/dns-query'
     'rule-set:google':
