@@ -85,11 +85,17 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-range-v6: 'fc00::/18'
   fake-ip-filter: ['*.lan', '+.224837439.xyz', 'rule-set:private', 'rule-set:fakeip_filter']
-  proxy-server-nameserver: *chinaDNS
+  proxy-server-nameserver: 
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   default-nameserver: ['223.5.5.5', '119.29.29.29']
-  nameserver: *foreignDNS
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   nameserver-policy:
-    'rule-set:cn': *chinaDNS
+    'rule-set:cn':
+      - '223.5.5.5'
+      - '119.29.29.29'
     "domain-suffix:tongji.edu.cn":
       - 202.120.190.208
       - 202.120.190.108
@@ -99,6 +105,12 @@ dns:
       - 180.184.1.1
       - 119.29.29.29
       - 180.76.76.76
+    'rule-set:linuxdo':
+      - 'https://dns.alidns.com/dns-query'
+      - 'https://doh.pub/dns-query'
+    'rule-set:google':
+      - 'https://dns.cloudflare.com/dns-query'
+      - 'https://dns.google/dns-query'
   direct-nameserver: ['system', '223.5.5.5', '119.29.29.29']
   direct-nameserver-follow-policy: true
   respect-rules: true
