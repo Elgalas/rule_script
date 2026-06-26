@@ -659,9 +659,20 @@ group_filter:
 # 定义分流策略组
 proxy-groups:
   
-  - name:  '节点选择'
-    <<: [*group_common_select, *proxies_default]
-
+  - name: '节点选择'
+    <<: *group_common_select
+    include-all-providers: true
+    filter: '.*'
+    proxies:
+      [
+        '低倍率',
+        '香港-自动', '香港-手动',
+        '日本-自动', '日本-手动',
+        '美国-自动', '美国-手动',
+        '新加坡-自动', '新加坡-手动',
+        '台湾省-自动', '台湾省-手动',
+        '其他-自动', '其他-手动'
+      ]
   - name: '默认代理'
     <<: *group_common_select
     proxies:
@@ -692,6 +703,7 @@ proxy-groups:
     include-all-providers: false
     proxies:
       [
+        '节点选择',
         '低倍率',
         '香港-自动',
         '日本-自动',
