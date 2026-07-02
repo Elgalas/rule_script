@@ -317,9 +317,9 @@ rule-providers:
     type: http
     interval: 28800
     behavior: domain
-    format: yaml
-    url: 'https://anti-ad.net/clash.yaml'
-    path: './ruleset/my_anti_ad.yaml'
+    format: mrs
+    url: 'https://anti-ad.net/mihomo.mrs'
+    path: './ruleset/my_anti_ad.mrs'
   adblockmihomolite:
     <<: *rule_providers_domain
     format: mrs
@@ -344,6 +344,13 @@ rule-providers:
     url: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs'
     path: './ruleset/private_ip.mrs'
     path-in-bundle: 'geo/geoip/private.mrs'
+  private_ip_v6:
+    type: http
+    interval: 28800
+    behavior: classical
+    format: text
+    url: 'https://raw.githubusercontent.com/Elgalas/rule_script/refs/heads/main/rule/Mihomo/private_ip_v6.list'
+    path: './ruleset/private_ip_v6.list'
   epicgames:
     <<: *rule_providers_domain
     format: mrs
@@ -901,6 +908,7 @@ rules:
   # 私有网络直连
   - RULE-SET,private,直连
   - RULE-SET,private_ip,直连,no-resolve
+  - RULE-SET,private_ip_v6,直连,no-resolve
 
   # 国内直连
   - RULE-SET,games_cn,直连
